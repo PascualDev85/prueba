@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
-import { MuiTable } from "./MuiTable";
+import TablePaginationActions from "./mui/TablePaginationActions";
 
 export const DataTable = () => {
   const { startDay } = useSelector((state) => state.energia);
@@ -10,13 +10,13 @@ export const DataTable = () => {
       <Grid
         container
         component="div"
-        justifyContent="flex-start"
-        columns={{ xs: 4, sm: 8, md: 12 }}
+        justifyContent="center"
         style={{
           display: startDay === null ? "none" : "",
+          marginTop: 40,
         }}
       >
-        <Grid item xs={17} md={17} lg={9}>
+        <Grid item xs={12} md={12} lg={8}>
           <Card variant="outlined" sx={{ boxShadow: 5, borderRadius: 4 }}>
             <CardHeader
               sx={{
@@ -26,7 +26,7 @@ export const DataTable = () => {
               title="Datos de la Red Eléctrica"
             />
             <CardContent>
-              <MuiTable />
+              <TablePaginationActions />
             </CardContent>
           </Card>
         </Grid>

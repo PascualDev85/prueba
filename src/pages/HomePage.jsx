@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { NavBar } from "../energia/components";
 import { FormView, GraphicView } from "../energia/views";
-import { CheckingAuth } from "../ui/components/CheckingAuth";
+import { LoadingData } from "../ui/components/LoadingData";
 
 export const HomePage = () => {
   const { isLoading } = useSelector((state) => state.energia);
@@ -30,7 +30,7 @@ export const HomePage = () => {
         </Grid>
 
         <Grid item xs={12} md={12} lg={9}>
-          {isLoading && <CheckingAuth />}
+          {isLoading && <LoadingData />}
           <GraphicView />
         </Grid>
       </Grid>

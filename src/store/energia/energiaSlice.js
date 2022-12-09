@@ -13,7 +13,7 @@ export const energiaSlice = createSlice({
       datasets: [],
     },
     dataTable: [],
-    errorMessage: null,
+    errorMessage: "",
   },
   reducers: {
     startLoadingFormData: (state) => {
@@ -32,13 +32,21 @@ export const energiaSlice = createSlice({
       state.isLoading = false;
     },
     setDataTable: (state, { payload }) => {
-      console.log("DATOS TABLA", payload);
       state.dataTable = payload;
       state.isLoading = false;
+    },
+    setErrorMessage: (state, { payload }) => {
+      state.isLoading = false;
+      state.errorMessage = payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { startLoadingFormData, formDay, setGraphic, setDataTable } =
-  energiaSlice.actions;
+export const {
+  startLoadingFormData,
+  formDay,
+  setGraphic,
+  setDataTable,
+  setErrorMessage,
+} = energiaSlice.actions;

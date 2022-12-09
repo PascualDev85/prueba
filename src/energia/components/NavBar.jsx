@@ -28,7 +28,7 @@ export const NavBar = () => {
             <Typography sx={{ mr: 2 }} variant="h6" noWrap component="div">
               David
             </Typography>
-            <IconButton sx={{ color: "#FE5000" }}>
+            <IconButton sx={{ color: "primary.light" }}>
               <LogoutOutlined />
             </IconButton>
           </Grid>

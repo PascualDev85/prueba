@@ -13,6 +13,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 
 import { startForm } from "../../store/energia";
@@ -24,16 +25,16 @@ const today = formatDate(new Date());
 
 const formData = {
   language: "",
-  type: null,
+  type: "",
   startDay: "",
   endDay: "",
 };
 
 export const Form = () => {
-  const { isLoading, dataTable } = useSelector((state) => state.energia);
+  const { isLoading, dataTable, errorMessage } = useSelector(
+    (state) => state.energia
+  );
   const dispatch = useDispatch();
-
-  console.log(isLoading);
 
   const { language, type, startDay, endDay, onInputChange } = useForm(formData);
 
@@ -49,7 +50,7 @@ export const Form = () => {
 
   return (
     <>
-      <Box container component="div">
+      <Box component="div">
         <Grid item>
           <Card variant="outlined" sx={{ boxShadow: 5, borderRadius: 4 }}>
             <CardHeader
@@ -76,6 +77,7 @@ export const Form = () => {
                         label="language"
                         value={language || ""}
                         onChange={onInputChange}
+                        required
                       >
                         <MenuItem value={"es"}>Español</MenuItem>
                         <MenuItem value={"en"}>Ingles</MenuItem>
@@ -91,8 +93,9 @@ export const Form = () => {
                         label="energia"
                         value={type || ""}
                         onChange={onInputChange}
+                        required
                       >
-                        <MenuItem value={0}>Renovable</MenuItem>
+                        <MenuItem value={"0"}>Renovable</MenuItem>
                         <MenuItem value={1}>No Renovable</MenuItem>
                         <MenuItem value={2}>Demanda</MenuItem>
                       </Select>
@@ -109,7 +112,7 @@ export const Form = () => {
                         type="date"
                         value={startDay || []}
                         onChange={onInputChange}
-                        max={today}
+                        required
                       />
                     </FormControl>
                   </Grid>
@@ -123,9 +126,16 @@ export const Form = () => {
                         type="date"
                         value={endDay || []}
                         onChange={onInputChange}
-                        inputProps={{ max: today }}
+                        inputProps={{ max: today, min: startDay }}
+                        required
                       />
                     </FormControl>
+
+                    {errorMessage && (
+                      <Typography sx={{ color: "red", p: 1 }}>
+                        {errorMessage}
+                      </Typography>
+                    )}
                   </Grid>
 
                   <Grid
@@ -140,9 +150,9 @@ export const Form = () => {
                       type="submit"
                       variant="outlined"
                       sx={{
-                        backgroundColor: "#f37840",
-                        borderColor: "#333",
-                        color: "#333",
+                        backgroundColor: "#FE5000",
+                        borderColor: "primary.main",
+                        color: "primary.main",
                       }}
                       disabled={isLoading}
                     >
@@ -150,9 +160,9 @@ export const Form = () => {
                     </Button>
                     <Button
                       sx={{
-                        backgroundColor: "#f37840",
-                        borderColor: "#333",
-                        color: "#333",
+                        backgroundColor: "#FE5000",
+                        borderColor: "primary.main",
+                        color: "primary.main",
                       }}
                       disabled={isDownloading}
                       variant={isDownloading ? "contained" : "outlined"}

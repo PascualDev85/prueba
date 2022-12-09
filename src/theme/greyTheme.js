@@ -5,6 +5,8 @@ export const greyTheme = createTheme({
   palette: {
     primary: {
       main: "#3B434D",
+      contrastText: "#fff",
+      light: "#FE5000",
     },
     secondary: {
       main: "#FE5000",
