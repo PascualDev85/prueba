@@ -108,7 +108,6 @@ export const Form = () => {
                         inputProps={{ max: today }}
                         name="startDay"
                         id="startDay"
-                        // label="Fecha de inicio"
                         type="date"
                         value={startDay || []}
                         onChange={onInputChange}
@@ -122,7 +121,6 @@ export const Form = () => {
                       <TextField
                         name="endDay"
                         id="endDay"
-                        // label="Fecha de inicio"
                         type="date"
                         value={endDay || []}
                         onChange={onInputChange}
